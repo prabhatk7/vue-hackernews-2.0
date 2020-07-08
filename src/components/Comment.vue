@@ -1,44 +1,44 @@
-<template>
-  <li v-if="comment" class="comment">
+<template>                                                                                //template contains tags and components
+  <li v-if="comment" class="comment">                                                     //conditional class allocation
     <div class="by">
-      <router-link :to="'/user/' + comment.by">{{ comment.by }}</router-link>
-      {{ comment.time | timeAgo }} ago
+      <router-link :to="'/user/' + comment.by">{{ comment.by }}</router-link>                 //link that will take us to the user who commented
+      {{ comment.time | timeAgo }} ago                                                    //time passed since user commented
     </div>
-    <div class="text" v-html="comment.text"></div>
-    <div class="toggle" :class="{ open }" v-if="comment.kids && comment.kids.length">
-      <a @click="open = !open">{{
+    <div class="text" v-html="comment.text"></div>                                           //comment text is put dynamically
+    <div class="toggle" :class="{ open }" v-if="comment.kids && comment.kids.length">      //if comment.kids && comment.kids.length them class="open"
+      <a @click="open = !open">{{                                                          //on click toggle the 'open' state
         open
-            ? '[-]'
+            ? '[-]'                                                                       //if open put [-] else........
             : '[+] ' + pluralize(comment.kids.length) + ' collapsed'
       }}</a>
     </div>
-    <ul class="comment-children" v-show="open">
-      <comment v-for="id in comment.kids" :key="id" :id="id"></comment>
+    <ul class="comment-children" v-show="open">                                   //unordered list
+      <comment v-for="id in comment.kids" :key="id" :id="id"></comment>            //for every id in comment.kids list the comment
     </ul>
   </li>
 </template>
 
-<script>
-export default {
+<script>                                                           //js starts here
+export default {                                                  //export this component with name comment
   name: 'comment',
-  props: ['id'],
-  data () {
+  props: ['id'],                                                  //props received by component
+  data () {                                                        //data method same as state
     return {
       open: true
     }
   },
-  computed: {
+  computed: {                                                    //compputed has a comment method
     comment () {
       return this.$store.state.items[this.id]
     }
   },
-  methods: {
+  methods: {                                                     //methods used in this component (just like Handlers)
     pluralize: n => n + (n === 1 ? ' reply' : ' replies')
   }
 }
 </script>
 
-<style lang="stylus">
+<style lang="stylus">                                                //CSS starts here
 .comment-children
   .comment-children
     margin-left 1.5em
