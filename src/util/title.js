@@ -1,13 +1,13 @@
-function getTitle (vm) {
+function getTitle (vm) {                             //get title of vm
   const { title } = vm.$options
   if (title) {
-    return typeof title === 'function'
+    return typeof title === 'function'              //if title === 'function' return title.call
       ? title.call(vm)
-      : title
+      : title                                       //else return title
   }
 }
 
-const serverTitleMixin = {
+const serverTitleMixin = {                                 
   created () {
     const title = getTitle(this)
     if (title) {
@@ -25,6 +25,6 @@ const clientTitleMixin = {
   }
 }
 
-export default process.env.VUE_ENV === 'server'
+export default process.env.VUE_ENV === 'server'               //export serverTitleMixin or clientTitleMixin
   ? serverTitleMixin
   : clientTitleMixin
