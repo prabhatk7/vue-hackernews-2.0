@@ -1,16 +1,16 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import Vue from 'vue'                                                    //import Vue 
+import Router from 'vue-router'                                          //import Router
 
-Vue.use(Router)
+Vue.use(Router)                                                          //use router plugin in Vue
 
 // route-level code splitting
-const createListView = id => () => import('../views/CreateListView').then(m => m.default(id))
+const createListView = id => () => import('../views/CreateListView').then(m => m.default(id))         //import when required by calling a function
 const ItemView = () => import('../views/ItemView.vue')
 const UserView = () => import('../views/UserView.vue')
 
-export function createRouter () {
-  return new Router({
-    mode: 'history',
+export function createRouter () {                                              //export createRouter function
+  return new Router({                                                          //return new router object
+    mode: 'history',                                                        
     fallback: false,
     scrollBehavior: () => ({ y: 0 }),
     routes: [
