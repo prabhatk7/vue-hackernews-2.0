@@ -1,7 +1,7 @@
 <!-- borrowed from Nuxt! -->
 
-<template>
-  <div class="progress" :style="{
+<template> 
+  <div class="progress" :style="{                             //inline style given to div conditionally (based on state)
     'width': percent+'%',
     'height': height,
     'background-color': canSuccess? color : failedColor,
@@ -10,9 +10,9 @@
 </template>
 
 <script>
-export default {
+export default {                                                  //export component
   data () {
-    return {
+    return {                                                      //following data is put in state
       percent: 0,
       show: false,
       canSuccess: true,
@@ -22,7 +22,7 @@ export default {
       failedColor: '#ff0000',
     }
   },
-  methods: {
+  methods: {                                                     //methods defined for this component
     start () {
       this.show = true
       this.canSuccess = true
