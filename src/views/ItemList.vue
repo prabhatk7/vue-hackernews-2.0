@@ -1,16 +1,16 @@
 <template>
   <div class="news-view">
     <div class="news-list-nav">
-      <router-link v-if="page > 1" :to="'/' + type + '/' + (page - 1)">&lt; prev</router-link>
-      <a v-else class="disabled">&lt; prev</a>
-      <span>{{ page }}/{{ maxPage }}</span>
+      <router-link v-if="page > 1" :to="'/' + type + '/' + (page - 1)">&lt; prev</router-link>       //conditional rendering of router link 
+      <a v-else class="disabled">&lt; prev</a>                                                       //else disabled link
+      <span>{{ page }}/{{ maxPage }}</span>                                                          //span with page/max page
       <router-link v-if="hasMore" :to="'/' + type + '/' + (page + 1)">more &gt;</router-link>
       <a v-else class="disabled">more &gt;</a>
     </div>
     <transition :name="transition">
-      <div class="news-list" :key="displayedPage" v-if="displayedPage > 0">
+      <div class="news-list" :key="displayedPage" v-if="displayedPage > 0">                          //conditional rendering of div
         <transition-group tag="ul" name="item">
-          <item v-for="item in displayedItems" :key="item.id" :item="item">
+          <item v-for="item in displayedItems" :key="item.id" :item="item">                      //item component
           </item>
         </transition-group>
       </div>
@@ -22,7 +22,7 @@
 import { watchList } from '../api'
 import Item from '../components/Item.vue'
 
-export default {
+export default {                                                   
   name: 'item-list',
 
   components: {
@@ -41,7 +41,7 @@ export default {
     }
   },
 
-  computed: {
+  computed: {                                                            //computed to compute page, maxpage, hasmore
     page () {
       return Number(this.$route.params.page) || 1
     },
@@ -54,7 +54,7 @@ export default {
     }
   },
 
-  beforeMount () {
+  beforeMount () {                                                       
     if (this.$root._isMounted) {
       this.loadItems(this.page)
     }
