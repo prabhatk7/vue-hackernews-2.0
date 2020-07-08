@@ -1,11 +1,11 @@
 import Vue from 'vue'
 
 export default {
-  SET_ACTIVE_TYPE: (state, { type }) => {
+  SET_ACTIVE_TYPE: (state, { type }) => {                    //function to set active type
     state.activeType = type
   },
 
-  SET_LIST: (state, { type, ids }) => {
+  SET_LIST: (state, { type, ids }) => {                    //set list type and ids
     state.lists[type] = ids
   },
 
