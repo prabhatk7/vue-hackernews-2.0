@@ -4,10 +4,10 @@ import actions from './actions'
 import mutations from './mutations'
 import getters from './getters'
 
-Vue.use(Vuex)
+Vue.use(Vuex)                                         //use Vuex in Vue
 
-export function createStore () {
-  return new Vuex.Store({
+export function createStore () {                      //create and export store
+  return new Vuex.Store({                              //return vuex store with following states
     state: {
       activeType: null,
       itemsPerPage: 20,
@@ -21,7 +21,7 @@ export function createStore () {
         job: []
       }
     },
-    actions,
+    actions,                                    //return actions,mutations and getters as well
     mutations,
     getters
   })
